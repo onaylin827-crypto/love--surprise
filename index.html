@@ -1,0 +1,586 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💕 For You 💕</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Segoe UI', 'Pyidaungsu', sans-serif;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 40%, #ffdab9 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #6b1d3a;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* 💖 အသဲပုံလေးတွေ လွင့်ဝဲနေစေမယ့် Animation CSS 💖 */
+  .hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .floating-heart {
+    position: absolute;
+    bottom: -50px;
+    color: rgba(255, 105, 180, 0.7);
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    text-shadow: 0 0 8px rgba(255, 182, 193, 0.8);
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.5); opacity: 0; }
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.15), inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+    text-align: center;
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #d6336c;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(255, 182, 193, 0.5);
+  }
+  
+  .heart { animation: beat 1.2s infinite; display: inline-block; }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+  
+  button {
+    font-family: inherit;
+    font-size: 1.1em;
+    padding: 16px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  
+  .btn-yes { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); color: #c2185b; box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4); }
+  .btn-no { background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%); box-shadow: 0 8px 20px rgba(189, 189, 189, 0.3); }
+  .btn-choice { background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%); box-shadow: 0 8px 20px rgba(255, 179, 71, 0.4); color: #5d4037; }
+  .btn-next { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); box-shadow: 0 8px 20px rgba(161, 140, 209, 0.4); font-size: 1.2em; }
+  .btn-back { background: linear-gradient(135deg, #d3cce3 0%, #e9e4f0 100%); color: #6b1d3a; box-shadow: 0 8px 20px rgba(211, 204, 227, 0.4); font-size: 1.1em; }
+  .btn-exit { background: linear-gradient(135deg, #ff6a88 0%, #ff99ac 100%); box-shadow: 0 8px 20px rgba(255, 106, 136, 0.4); font-size: 1.2em; margin-top: 20px;}
+  
+  button:hover { transform: translateY(-4px) scale(1.02); filter: brightness(1.05); }
+  button:active { transform: translateY(0) scale(0.98); }
+  
+  .angry { font-size: 1.5em; font-weight: bold; color: #d6336c; margin: 20px 0; line-height: 1.6; }
+  .angry-emoji { font-size: 2.5em; display: block; margin-bottom: 15px; }
+  
+  .reply-text {
+    font-size: 1.6em; font-weight: bold; color: #d6336c; margin: 30px 0; line-height: 1.7;
+    padding: 25px 20px; background: rgba(255, 240, 245, 0.8); border-radius: 20px;
+    border: 2px dashed #ffb6c1; box-shadow: inset 0 0 15px rgba(255, 182, 193, 0.2);
+  }
+  .reply-emoji { font-size: 1.3em; }
+  
+  .btn-row { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; }
+  
+  .letter-title { font-size: 1.4em; color: #d6336c; margin-bottom: 20px; font-weight: bold; text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5); }
+  
+  .message {
+    font-size: 1.05em; line-height: 1.9; margin: 20px 0; padding: 25px 22px;
+    background: rgba(255, 255, 255, 0.8); border-left: 5px solid #ff9a9e;
+    border-radius: 15px; text-align: left; box-shadow: 0 5px 15px rgba(255, 105, 180, 0.08);
+  }
+  .message p { margin-bottom: 15px; }
+  
+  .signature { text-align: right; margin-top: 20px; font-style: italic; color: #c2185b; line-height: 1.7; }
+  
+  /* 📸 ဓာတ်ပုံများကို ၂ ပုံတွဲ ပြသမယ့် အပိုင်း 📸 */
+  .gallery { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; 
+    margin-top: 25px; 
+    justify-items: center;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 140px; 
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+    border: 4px solid #fff; 
+    transition: all 0.4s ease;
+  }
+  
+  .gallery img:hover { 
+    transform: scale(1.08) rotate(2deg); 
+    box-shadow: 0 12px 25px rgba(255, 105, 180, 0.4); 
+    z-index: 2;
+  }
+
+  .section-title { font-size: 1.4em; color: #d6336c; margin: 40px 0 15px; font-weight: bold; text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5); }
+  .hidden { display: none; }
+  .footer { margin-top: 30px; font-style: italic; color: #c2185b; font-size: 1.1em; }
+
+  /* ========================================= */
+  /* 🎮 Game အတွက် CSS အသစ်များ 🎮 */
+  /* ========================================= */
+  #game-container {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(180deg, #fff0f5 0%, #ffebf0 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    border: 3px solid #ffb6c1;
+    box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.5);
+    touch-action: none; 
+  }
+
+  #game-score {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #d6336c;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .basket {
+    position: absolute;
+    bottom: 10px;
+    font-size: 40px;
+    transition: transform 0.1s;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .falling-heart {
+    position: absolute;
+    font-size: 30px;
+    top: -40px;
+    user-select: none;
+    pointer-events: none; 
+  }
+
+  .kiss-effect {
+    position: absolute;
+    font-size: 24px;
+    animation: floatKiss 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 20;
+    text-align: center;
+    width: 90%;
+    left: 5%;
+  }
+
+  @keyframes floatKiss {
+    0% { transform: translateY(0) scale(0.8); opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hearts-container" id="hearts-container"></div>
+
+  <!-- STEP 1 -->
+  <div class="card" id="step1">
+    <h1>ဘေ့ကို ချစ်လား? <span class="heart">💕</span></h1>
+    <div class="btn-group">
+      <button class="btn-yes" onclick="goStep2()">ချစ်တယ် ❤️</button>
+      <button class="btn-no" onclick="goStepNo()">မချစ်ဘူး 😒</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card hidden" id="step2">
+    <h1>ဘယ်လောက်ထိချစ်လဲ? <span class="heart">💖</span></h1>
+    <div class="btn-group">
+      <button class="btn-choice" onclick="goReply('many')">များကြီး 💗</button>
+      <button class="btn-choice" onclick="goReply('little')">နည်းနည်း 💓</button>
+      <button class="btn-choice" onclick="goReply('none')">လုံးဝမချစ်ဖူး 💔</button>
+    </div>
+    <button class="btn-back" style="margin-top:30px;" onclick="goBackToStart()">⬅️ နောက်သို့</button>
+  </div>
+
+  <!-- STEP NO -->
+  <div class="card hidden" id="stepNo">
+    <div class="angry">
+      <span class="angry-emoji">😤</span>
+      အိမ်အထိလာလုပ်သတ်မာ 😒
+    </div>
+    <button class="btn-back" onclick="goBackToStart()">⬅️ နောက်သို့</button>
+  </div>
+
+  <!-- REPLY MANY -->
+  <div class="card hidden" id="replyMany">
+    <div class="reply-text">
+      ဘေဘီလည်း များကြီးချစ်တယ် <span class="reply-emoji">💗💗💗</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-next" onclick="goPhotoPage()">ရှေ့သို့ ➡️</button>
+      <button class="btn-back" onclick="goStep2()">⬅️ နောက်သို့</button>
+    </div>
+  </div>
+
+  <!-- REPLY LITTLE -->
+  <div class="card hidden" id="replyLittle">
+    <div class="reply-text">
+      များကြီးချစ်ပေးပါနော် <span class="reply-emoji">🥺🥺🥺</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-next" onclick="goPhotoPage()">ရှေ့သို့ ➡️</button>
+      <button class="btn-back" onclick="goStep2()">⬅️ နောက်သို့</button>
+    </div>
+  </div>
+
+  <!-- REPLY NONE -->
+  <div class="card hidden" id="replyNone">
+    <div class="reply-text">
+      အိမ်အထိလာလုပ်သတ်မာ <span class="reply-emoji">😒😒😒</span>
+</div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep2()">⬅️ နောက်သို့</button>
+    </div>
+  </div>
+
+  <!-- 📸 PAGE 1: ဓာတ်ပုံများ 📸 -->
+  <div class="card hidden" id="photoPage">
+    <h1>ဓာတ်ပုံများ <span class="heart">📸</span></h1>
+
+    <div class="gallery">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+      <img src="photo4.jpg" alt="Memory 4">
+      <img src="photo5.jpg" alt="Memory 5">
+      <img src="photo6.jpg" alt="Memory 6">
+    </div>
+
+    <div class="btn-row" style="margin-top: 40px;">
+      <button class="btn-next" onclick="goLetterPage()">စာသားများဆီသို့ ရှေ့သို့ ➡️</button>
+      <button class="btn-back" onclick="goBackToStart()">⬅️ နောက်သို့</button>
+    </div>
+  </div>
+
+  <!-- 💌 PAGE 2: စာသားများ 💌 -->
+  <div class="card hidden" id="letterPage">
+    <div class="letter-title">💌 ဘေဘီမှ ကိုကို့ဆီသို့ ❤️</div>
+
+    <div class="message">
+      <p>ကိုကိုရေ… ❤️</p>
+      <p>ဒီစာလေးကို ဘေဘီက ကိုကို့အတွက် အမှတ်တရအဖြစ် ရေးပေးချင်တာပါ။ ကိုကိုနဲ့ တွေ့ဆုံခွင့်ရခဲ့တာ၊ အတူတူ စကားပြောခဲ့ရတာ၊ ရယ်မောခဲ့ရတာ၊ အမှတ်တရလေးတွေ ဖန်တီးခဲ့ရတာ အားလုံးကို ဘေဘီ တန်ဖိုးထားပါတယ်။</p>
+      <p>တစ်ခါတလေ စိတ်ကောက်တာတွေ၊ အမြင်မတူတာတွေ၊ နားလည်မှုလွဲတာတွေ ရှိနိုင်ပေမယ့် အဲဒီအရာတွေကြောင့် ကိုကို့ကို ချစ်တဲ့စိတ်က လျော့မသွားပါဘူး။ ဘေဘီလည်း မပြည့်စုံတဲ့သူမို့ တစ်ခါတလေ မှားနိုင်တယ်၊ စိတ်ဆိုးမိနိုင်တယ်။ အဲဒီအချိန်တွေမှာလည်း ကိုကို့ကို ပိုနားလည်ပေးနိုင်တဲ့သူ၊ ပိုဂရုစိုက်ပေးနိုင်တဲ့သူ ဖြစ်အောင် ကြိုးစားသွားပါမယ်။</p>
+      <p>ကိုကို ပျော်နေတဲ့အချိန်မှာ အတူတူ ရယ်မောပေးချင်သလို ပင်ပန်းနေတဲ့အချိန်၊ စိတ်ညစ်နေတဲ့အချိန်တွေမှာလည်း ကိုကို့ဘေးနားကနေ အားပေးနေချင်ပါတယ်။ အရာအားလုံး အဆင်ပြေနေတဲ့နေ့တွေမှာပဲ မဟုတ်ဘဲ အခက်အခဲတွေ ကြုံလာတဲ့နေ့တွေမှာပါ လက်မလွှတ်ဘဲ အတူတူ ဖြတ်သန်းသွားချင်တယ်။</p>
+      <p>ကိုကို့ရဲ့ အပြုံးလေးတွေကို အမြဲမြင်ချင်တယ်။ ကိုကို့အိပ်မက်တွေ အကောင်အထည်ဖော်နိုင်ဖို့လည်း ဘေဘီ တတ်နိုင်သလောက် အားပေးကူညီပေးချင်ပါတယ်။ နေ့တိုင်း အကြီးကြီးတွေ မလိုပါဘူး။ ကိုကိုနဲ့အတူ ရိုးရိုးရှင်းရှင်းလေး ပျော်ရွှင်ရတဲ့ အချိန်တွေ၊ သေးသေးလေး ဂရုစိုက်မှုတွေ၊ ချစ်စရာ အမှတ်တရအသစ်တွေကိုပဲ လိုချင်တာပါ။</p>
+      <p>ဒီနေ့ကစပြီး နောက်လာမယ့်နေ့ရက်တိုင်းမှာလည်း ကိုကို့ကို ဒီနေ့ထက် ပိုချစ်နိုင်ဖို့၊ ပိုနားလည်ပေးနိုင်ဖို့၊ ပိုဂရုစိုက်ပေးနိုင်ဖို့ ဘေဘီ ကြိုးစားသွားမယ်နော်။ ကိုကို့ဘေးမှာ ဘေဘီ ရှိနေမယ်ဆိုတာ မမေ့ပါနဲ့။</p>
+      <p>ကိုကို့ကို အရမ်းချစ်တယ်။ အခုလည်းချစ်တယ်၊ နောက်လည်း ဆက်ချစ်နေဦးမယ်။ 🫶❤️</p>
+
+      <div class="signature">
+        <strong>အမြဲချစ်နေမယ့်<br>ဘေဘီ 💗</strong>
+      </div>
+    </div>
+
+    <div class="footer">Forever Yours 💕</div>
+
+    <div class="btn-row" style="margin-top: 30px;">
+      <button class="btn-next" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #c2185b;" onclick="startGame()">🎮 အချစ်စမ်းသပ် Game ကစားမယ် 🎮</button>
+      <button class="btn-back" onclick="goPhotoPage()">⬅️ ဓာတ်ပုံများဆီသို့ နောက်သို့</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: 🎮 GAME PAGE 🎮 -->
+  <div class="card hidden" id="gamePage">
+    <h1>အချစ်စမ်းသပ် Game <span class="heart">💖</span></h1>
+    <p style="margin-bottom: 15px; font-weight: bold; color: #d6336c;">ကျလာတဲ့ အသဲလေးတွေကို ဖမ်းပါ။ (ဘယ်ညာ ရွှေ့ပါ သို့မဟုတ် ဖုန်းကို ထိကိုင်ပြီး ရွှေ့ပါ)</p>
+    
+    <div id="game-container">
+      <div id="game-score">အသဲ: 0</div>
+      <div class="basket" id="basket">🧺</div>
+    </div>
+    
+    <div class="btn-row" style="margin-top: 20px;" id="game-controls">
+      <button class="btn-next" onclick="goLetterPage()">⬅️ စာသားများဆီသို့ ပြန်သွားမယ်</button>
+    </div>
+  </div>
+
+<script>
+  // 💖 Floating Hearts
+  function createHearts() {
+    const container = document.getElementById('hearts-container');
+    const heartIcons = ['❤️', '💖', '💗', '💓', '💕', '🩷', '✨'];
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+      heart.style.left = Math.random() * 100 + 'vw'; 
+      heart.style.animationDuration = (Math.random() * 6 + 4) + 's'; 
+      heart.style.animationDelay = Math.random() * 5 + 's'; 
+      heart.style.fontSize = (Math.random() * 15 + 12) + 'px'; 
+      container.appendChild(heart);
+    }
+  }
+  window.onload = createHearts;
+
+  // Page Navigation
+  function hideAll() {
+    document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goStep2() { hideAll(); document.getElementById('step2').classList.remove('hidden'); }
+  function goStepNo() { hideAll(); document.getElementById('stepNo').classList.remove('hidden'); }
+  
+  function goReply(type) {
+    hideAll();
+    if (type === 'many') document.getElementById('replyMany').classList.remove('hidden');
+    else if (type === 'little') document.getElementById('replyLittle').classList.remove('hidden');
+    else if (type === 'none') document.getElementById('replyNone').classList.remove('hidden');
+  }
+  
+  // 📸 ဓာတ်ပုံ Page ကို သွားမယ်
+  function goPhotoPage() {
+    hideAll();
+    document.getElementById('photoPage').classList.remove('hidden');
+    stopGame(); 
+    resetGameControls(); 
+  }
+
+  // 💌 စာသား Page ကို သွားမယ်
+  function goLetterPage() {
+    hideAll();
+    document.getElementById('letterPage').classList.remove('hidden');
+  }
+
+  function goBackToStart() {
+    hideAll();
+    document.getElementById('step1').classList.remove('hidden');
+    stopGame();
+    resetGameControls();
+  }
+
+  // =========================================
+  // 🎮 Game Logic 🎮
+  // =========================================
+  let score = 0;
+  let gameInterval;
+  let isGameRunning = false;
+  let basketX = 0;
+  let basketSpeed = 20;
+  
+  const gameContainer = document.getElementById('game-container');
+  const basket = document.getElementById('basket');
+  const scoreDisplay = document.getElementById('game-score');
+  const gameControls = document.getElementById('game-controls');
+
+  function resetBasket() {
+    const containerWidth = gameContainer.clientWidth;
+    basketX = (containerWidth / 2) - 20;
+    basket.style.left = basketX + 'px';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!isGameRunning) return;
+    if (e.key === 'ArrowLeft' || e.key === 'a') {
+      basketX = Math.max(0, basketX - basketSpeed);
+      basket.style.left = basketX + 'px';
+    } else if (e.key === 'ArrowRight' || e.key === 'd') {
+      const maxRight = gameContainer.clientWidth - basket.clientWidth;
+      basketX = Math.min(maxRight, basketX + basketSpeed);
+      basket.style.left = basketX + 'px';
+    }
+  });
+
+  function moveBasket(e) {
+    if (!isGameRunning) return;
+    const rect = gameContainer.getBoundingClientRect();
+    let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    let newX = clientX - rect.left - (basket.clientWidth / 2);
+    
+    if (newX < 0) newX = 0;
+    if (newX > gameContainer.clientWidth - basket.clientWidth) {
+      newX = gameContainer.clientWidth - basket.clientWidth;
+    }
+    basketX = newX;
+    basket.style.left = basketX + 'px';
+  }
+
+  gameContainer.addEventListener('touchmove', moveBasket, { passive: false });
+  gameContainer.addEventListener('mousemove', moveBasket);
+
+  function resetGameControls() {
+    gameControls.innerHTML = `<button class="btn-next" onclick="goLetterPage()">⬅️ စာသားများဆီသို့ ပြန်သွားမယ်</button>`;
+  }
+
+  function startGame() {
+    hideAll();
+    document.getElementById('gamePage').classList.remove('hidden');
+    resetGameControls();
+    
+    score = 0;
+    scoreDisplay.innerText = 'အသဲ: 0';
+    
+    gameContainer.innerHTML = '';
+    gameContainer.appendChild(scoreDisplay);
+    gameContainer.appendChild(basket);
+    resetBasket();
+    
+    isGameRunning = true;
+    clearInterval(gameInterval);
+    
+    gameInterval = setInterval(dropHeart, 500); 
+  }
+
+  function stopGame() {
+    isGameRunning = false;
+    clearInterval(gameInterval);
+  }
+
+  function dropHeart() {
+    if (!isGameRunning) return;
+
+    const heart = document.createElement('div');
+    heart.classList.add('falling-heart');
+    heart.innerText = '❤️';
+    
+    const randomX = Math.random() * (gameContainer.clientWidth - 30);
+    heart.style.left = randomX + 'px';
+    
+    const duration = Math.random() * 1 + 1.5; 
+    heart.style.transition = `top ${duration}s linear`;
+    
+    gameContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.style.top = gameContainer.clientHeight + 'px';
+    }, 50);
+
+    setTimeout(() => {
+      if (heart.parentNode) {
+        heart.parentNode.removeChild(heart);
+      }
+    }, duration * 1000);
+
+    let checkCatch = setInterval(() => {
+      if (!heart.parentNode || !isGameRunning) {
+        clearInterval(checkCatch);
+        return;
+      }
+
+      const heartRect = heart.getBoundingClientRect();
+      const basketRect = basket.getBoundingClientRect();
+
+      if (
+        heartRect.bottom >= basketRect.top &&
+        heartRect.right >= basketRect.left &&
+        heartRect.left <= basketRect.right
+      ) {
+        clearInterval(checkCatch);
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+        addScore();
+      }
+    }, 50);
+  }
+
+  function addScore() {
+    score++;
+    scoreDisplay.innerText = 'အသဲ: ' + score;
+    
+    let kissText = '';
+    
+    if (score === 100) {
+      kissText = 'ဝမ်းသာပါတယ် ဘေဘီ့ထံ အာဘွား၁၀၀ထုတ်ယူနိုင်ပါသည်🥰🥰🥰';
+      showKissEffect(kissText);
+      
+      setTimeout(() => {
+        stopGame();
+        gameControls.innerHTML = `
+          <button class="btn-exit" onclick="exitGame()">🚪 ဂိမ်းမှ ထွက်မည် (Exit)</button>
+        `;
+      }, 1500);
+
+    } else if (score % 10 === 0) {
+      let count = score === 10 ? '၁၀' : score === 20 ? '၂၀' : score === 30 ? '၃၀' : score === 40 ? '၄၀' : score === 50 ? '၅၀' : score === 60 ? '၆၀' : score === 70 ? '၇၀' : score === 80 ? '၈၀' : '၉၀';
+      kissText = `အာဘွား😘😘😘 ${count}ခါ`;
+      showKissEffect(kissText);
+    }
+  }
+
+  function showKissEffect(text) {
+    const effect = document.createElement('div');
+    effect.classList.add('kiss-effect');
+    effect.innerText = text;
+    effect.style.top = '30%'; 
+    effect.style.fontSize = text.length > 15 ? '20px' : '24px'; 
+    effect.style.fontWeight = 'bold';
+    effect.style.color = '#ff1493';
+    effect.style.textShadow = '1px 1px 2px white, 0 0 10px #ff69b4';
+    
+    gameContainer.appendChild(effect);
+
+    setTimeout(() => {
+      if (effect.parentNode) effect.parentNode.removeChild(effect);
+    }, 2000);
+  }
+
+  function exitGame() {
+    stopGame();
+    alert("ကစားပေးတာ ကျေးဇူးတင်ပါတယ်နော် ကိုကိုရယ်  🥰 အာဘွား ၁၀၀ လာယူဖို့ မမေ့နဲ့ဦးနော်!");
+    goBackToStart(); 
+  }
+</script>
+
+</body>
+</html></pre>
+        </body>
+    </html>
